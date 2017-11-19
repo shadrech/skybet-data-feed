@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "outDir": "js/",
+    "rootDir": "ts/",
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "removeComments": true,
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "sourceMap": true
+  },
+  "include": [
+    "ts/**/*"
+  ],
+  "exclude": [
+    "**/__tests__/*"
+  ]
+}
