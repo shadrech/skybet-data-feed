@@ -1,28 +1,32 @@
 import {
   mapEventPacketToJSON,
   mapMarketPacketToJSON,
-  mapOutcomePacketToJSON
+  mapOutcomePacketToJSON,
+  Event, Market, Outcome
 } from "../mappings";
 
-export default (data: string) => {
-  const packets: string[] = data.split("\n");
+export default (data: Buffer) => {
+  const packets: string[] = convertBufferToStringArray(data);
   for (let p of packets) {
-    if (!p.length) continue;
-
     const feed: string[] = parseSinglePacket(p);
-    console.log(convertToJSON(feed));
+    console.log("CONVERT", convertPacketToJSON(feed));
   }
 };
 
-export function parseSinglePacket(packet: string): string[] {
-  let cleanPacket = packet.replace(/\\\|/g, "");
-  cleanPacket = cleanPacket.substring(1, cleanPacket.length - 1);
-
-  const regex = /\|/;
-  return cleanPacket.split(regex);
+export function convertBufferToStringArray (data: Buffer): string[] {
+  const arr = data.toString().split("\n");
+  return arr.slice(0, arr.length - 1);
 }
 
-export function convertToJSON(feed: string[]) {
+export function parseSinglePacket(packet: string): string[] {
+  const cleanPacket = packet.replace(/\\\|/g, "");
+  const trimmedPacket = cleanPacket.substring(1, cleanPacket.length - 1);
+
+  const regex = /\|/;
+  return trimmedPacket.split(regex);
+}
+
+export function convertPacketToJSON(feed: string[]): Event | Market | Outcome {
   switch (feed[2]) {
     case "event":
       return mapEventPacketToJSON(feed);

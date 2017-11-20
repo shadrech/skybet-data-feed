@@ -9,7 +9,7 @@ const client = net.createConnection({
 });
 
 client.on("data", data => {
-  TransformData(data.toString());
+  TransformData(data);
 });
 
 client.on("end", () => {

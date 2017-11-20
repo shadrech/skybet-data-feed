@@ -9,7 +9,7 @@ const client = net.createConnection({
     console.log("Connect to Provider Service");
 });
 client.on("data", data => {
-    models_1.default(data.toString());
+    models_1.default(data);
 });
 client.on("end", () => {
     console.log("Disconnected from Porvider Service");

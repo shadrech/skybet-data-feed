@@ -2,22 +2,25 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mappings_1 = require("../mappings");
 exports.default = (data) => {
-    const packets = data.split("\n");
+    const packets = convertBufferToStringArray(data);
     for (let p of packets) {
-        if (!p.length)
-            continue;
         const feed = parseSinglePacket(p);
-        console.log(convertToJSON(feed));
+        console.log("CONVERT", convertPacketToJSON(feed));
     }
 };
+function convertBufferToStringArray(data) {
+    const arr = data.toString().split("\n");
+    return arr.slice(0, arr.length - 1);
+}
+exports.convertBufferToStringArray = convertBufferToStringArray;
 function parseSinglePacket(packet) {
-    let cleanPacket = packet.replace(/\\\|/g, "");
-    cleanPacket = cleanPacket.substring(1, cleanPacket.length - 1);
+    const cleanPacket = packet.replace(/\\\|/g, "");
+    const trimmedPacket = cleanPacket.substring(1, cleanPacket.length - 1);
     const regex = /\|/;
-    return cleanPacket.split(regex);
+    return trimmedPacket.split(regex);
 }
 exports.parseSinglePacket = parseSinglePacket;
-function convertToJSON(feed) {
+function convertPacketToJSON(feed) {
     switch (feed[2]) {
         case "event":
             return mappings_1.mapEventPacketToJSON(feed);
@@ -27,5 +30,5 @@ function convertToJSON(feed) {
             return mappings_1.mapOutcomePacketToJSON(feed);
     }
 }
-exports.convertToJSON = convertToJSON;
+exports.convertPacketToJSON = convertPacketToJSON;
 //# sourceMappingURL=index.js.map
