@@ -36,10 +36,12 @@ export const CREATE_EVENT_JSON: Event = {
   }
 };
 
-test("parseSinglePacket must return an array of tokens stripped of every pipe or backlash", () => {
-  expect(parseSinglePacket(CREATE_EVENT.toString())).toMatchObject(CREATE_EVENT_ARR);
-});
+describe("Event API", () => {
+  it("parseSinglePacket must return an array of tokens stripped of every pipe or backlash", () => {
+    expect(parseSinglePacket(CREATE_EVENT.toString())).toMatchObject(CREATE_EVENT_ARR);
+  });
 
-test("convertToJSON must return correct Outcome Object from given array of string tokens", () => {
-  expect(convertPacketToJSON(CREATE_EVENT_ARR)).toMatchObject(CREATE_EVENT_JSON);
+  it("convertToJSON must return correct Outcome Object from given array of string tokens", () => {
+    expect(convertPacketToJSON(CREATE_EVENT_ARR)).toMatchObject(CREATE_EVENT_JSON);
+  });
 });

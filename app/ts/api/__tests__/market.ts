@@ -32,10 +32,12 @@ export const UPDATE_MARKET_JSON: Market = {
   }
 };
 
-test("parseSinglePacket must return an array of tokens stripped of every pipe or backlash", () => {
-  expect(parseSinglePacket(UPDATE_MARKET.toString())).toEqual(UPDATE_MARKET_ARR);
-});
+describe("Market API", () => {
+  it("parseSinglePacket must return an array of tokens stripped of every pipe or backlash", () => {
+    expect(parseSinglePacket(UPDATE_MARKET.toString())).toEqual(UPDATE_MARKET_ARR);
+  });
 
-test("convertPacketToJSON must return correct Outcome Object from given array of string tokens", () => {
-  expect(convertPacketToJSON(UPDATE_MARKET_ARR)).toMatchObject(UPDATE_MARKET_JSON);
+  it("convertPacketToJSON must return correct Outcome Object from given array of string tokens", () => {
+    expect(convertPacketToJSON(UPDATE_MARKET_ARR)).toMatchObject(UPDATE_MARKET_JSON);
+  });
 });

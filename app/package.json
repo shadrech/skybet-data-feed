@@ -9,16 +9,18 @@
     "start": "node ./js/index.js",
     "start:watch": "nodemon ./js/index.js",
     "debug": "node --inspect ./js/index.js",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "jest --verbose",
+    "test:watch": "jest --watch --verbose"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "mongoose": "^4.13.4"
   },
   "devDependencies": {
     "@types/jest": "^21.1.6",
+    "@types/mongoose": "^4.7.27",
     "@types/node": "^8.0.53",
     "babel-jest": "^21.2.0",
     "babel-preset-es2015": "^6.24.1",
@@ -28,16 +30,16 @@
     "typescript": "^2.6.1"
   },
   "jest": {
+    "collectCoverage": true,
     "transform": {
-      "^.+\\.tsx?$": "ts-jest"
+      "^.+\\.ts?$": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "moduleFileExtensions": [
       "ts",
-      "tsx",
       "js",
-      "jsx",
       "json"
-    ]
+    ],
+    "testEnvironment": "node"
   }
 }

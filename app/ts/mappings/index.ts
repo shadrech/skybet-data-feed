@@ -1,7 +1,9 @@
+type FeedType = "event" | "outcome" | "market";
+type FeedOperation = "create" | "update";
 interface Type {
   msgId: number;
-  operation: string;
-  type: string;
+  operation: FeedOperation;
+  type: FeedType;
   timestamp: number;
 }
 export interface Event extends Type {
@@ -77,7 +79,7 @@ export function mapOutcomePacketToJSON(feed: string[]): Outcome {
   };
 }
 
-function mapHeader(feed: string[]): Type {
+function mapHeader(feed: any[]): Type {
  return {
    msgId: Number(feed[0]),
    operation: feed[1],

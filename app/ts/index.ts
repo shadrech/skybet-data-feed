@@ -1,17 +1,24 @@
 import * as net from "net";
-import TransformData from "./models";
+import {persistDataToDB} from "./models";
+import { setupTheGoose } from "./setup/mongoose";
 
-const client = net.createConnection({
-  host: "localhost",
-  port: 8282
-}, () => {
-  console.log("Connect to Provider Service");
-});
+async function startServer() {
+  await setupTheGoose();
 
-client.on("data", data => {
-  TransformData(data);
-});
+  const client = net.createConnection({
+    host: "localhost",
+    port: 8282
+  }, async () => {
+    console.log("Connect to Provider Service");
+  });
 
-client.on("end", () => {
-  console.log("Disconnected from Porvider Service");
-});
+  client.on("data", data => {
+    persistDataToDB(data);
+  });
+
+  client.on("end", () => {
+    console.log("Disconnected from Porvider Service");
+  });
+}
+
+startServer();

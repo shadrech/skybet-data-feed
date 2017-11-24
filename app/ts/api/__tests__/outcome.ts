@@ -36,16 +36,18 @@ export const CREATE_OUTCOME_JSON: Outcome = {
   }
 };
 
-test("convertBufferToStringArray converts Buffer to string array", () => {
-  const CREATE_OUTCOME_STR = CREATE_OUTCOME.toString().trim();
-  expect(convertBufferToStringArray(CREATE_OUTCOME)).toEqual([CREATE_OUTCOME_STR]);
-});
-
-test("parseSinglePacket must return an array of tokens stripped of every pipe or backlash", () => {
-  const CREATE_OUTCOME_STR = convertBufferToStringArray(CREATE_OUTCOME);
-  expect(parseSinglePacket(CREATE_OUTCOME_STR[0])).toEqual(CREATE_OUTCOME_ARR);
-});
-
-test("convertToJSON must return correct Outcome Object from given array of string tokens", () => {
-  expect(convertPacketToJSON(CREATE_OUTCOME_ARR)).toMatchObject(CREATE_OUTCOME_JSON);
+describe("Outcome API", () => {
+  test("convertBufferToStringArray converts Buffer to string array", () => {
+    const CREATE_OUTCOME_STR = CREATE_OUTCOME.toString().trim();
+    expect(convertBufferToStringArray(CREATE_OUTCOME)).toEqual([CREATE_OUTCOME_STR]);
+  });
+  
+  test("parseSinglePacket must return an array of tokens stripped of every pipe or backlash", () => {
+    const CREATE_OUTCOME_STR = convertBufferToStringArray(CREATE_OUTCOME);
+    expect(parseSinglePacket(CREATE_OUTCOME_STR[0])).toEqual(CREATE_OUTCOME_ARR);
+  });
+  
+  test("convertToJSON must return correct Outcome Object from given array of string tokens", () => {
+    expect(convertPacketToJSON(CREATE_OUTCOME_ARR)).toMatchObject(CREATE_OUTCOME_JSON);
+  });
 });
