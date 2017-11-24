@@ -9,8 +9,8 @@
     "start": "node ./js/index.js",
     "start:watch": "nodemon ./js/index.js",
     "debug": "node --inspect ./js/index.js",
-    "test": "jest --verbose",
-    "test:watch": "jest --watch --verbose"
+    "test": "./node_modules/.bin/jest --verbose",
+    "test:watch": "./node_modules/.bin/jest --watch --verbose"
   },
   "author": "",
   "license": "ISC",
