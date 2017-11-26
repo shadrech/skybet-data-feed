@@ -6,6 +6,7 @@ Time constraints meant I wasn't able to carry out the additional tasks; creating
 To run app Node is required. When is app/ directory, running 
 
         npm i
+	npm run build
         npm run start
 
 should start the TCP server using the Node module Net. This recieves the packets and saves them to the mongoDb running in the docker container
