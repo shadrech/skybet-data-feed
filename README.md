@@ -16,7 +16,7 @@ To run app Node is required. When in app/ directory, type
 
 ```bash
   npm i
-	npm run build
+  npm run build
   npm run start
 ```
 
