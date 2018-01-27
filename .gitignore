@@ -1,5 +1,5 @@
 # Typescript builds
-js
+app/js
 
 # IDE files
 .idea
